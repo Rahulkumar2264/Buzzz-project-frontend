@@ -1,0 +1,80 @@
+.Register{
+  width: 100vw;
+  height: 100vh;
+  background-color:#f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.registWrapper{
+  height: 70%;
+  width:60%;
+  display: flex;
+}
+.registerLeft,.registerRight{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  justify-content: center;
+  }
+
+  .registerContent{
+      font-size: 60px;
+      font-weight: 800;
+      color:#1775ee;
+      margin-bottom: 10px;
+  }
+  .registerContent1{
+      font-size: 28px;
+  }
+  .registerBox{
+    
+      padding: 20px;
+      height: 400px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      justify-content: space-between;
+      
+  }
+  .registerInput{
+      height: 50px;
+      border-radius: 10px;
+      padding-left: 20px;
+      border: 1px solid gray;
+      font-size: 18px;
+
+  }
+  .registerInput:focus{
+      outline: none;
+  }
+  .registerButton{
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color :#1775ee;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 800;
+
+  }
+ 
+
+  .loginRegisterButton{
+      height: 50px;
+      width: 50%;
+      align-self: center;
+      border-radius: 10px;
+      border: none;
+      background-color :#42b72a;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 800;
+
+
+  }
+  
