@@ -1,0 +1,20 @@
+.info-container{
+    position: fixed;
+    width: 300px;
+    height: auto;
+    background-color: white;
+    left: 160px;
+    margin-top: 50px;
+    top: 440px;
+    padding-top: 20px;
+    border-radius: 15px;
+}
+.info-container h3{
+    font-size: 20px;
+    padding-left: 30px;
+}
+.info-container .info-list{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}

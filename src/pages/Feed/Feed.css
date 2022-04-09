@@ -1,0 +1,14 @@
+.feed-page-wrapper{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    min-height: 1200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
