@@ -13,9 +13,9 @@ function FeedSearchCard() {
 
                 <span className='photo-logo'> Photo/Video</span>
             </div>
-            {/* <div class="search">
+            {/* <div className="search">
                 <input type="text" placeholder="Start a post..." name="search" />
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit"><i className="fa fa-search"></i></button>
             </div> */}
         </div>
     )

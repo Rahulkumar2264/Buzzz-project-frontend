@@ -21,8 +21,7 @@ export default function Register() {
 
         });
         result = await result.json();
-
-
+        console.log(result);
      }
 
 

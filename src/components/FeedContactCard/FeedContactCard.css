@@ -1,12 +1,12 @@
 .contact-wrapper{
-    position: fixed;
-    width: 300px;
+    position: absolute;
+    width: 15%;
     height: auto;
-    right: 250px;
-    top: 150px; 
-    background-color: white; 
-    padding: 20px; 
-    overflow: scroll;
+    right: 9%;
+    top: 150px;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: scroll;
     margin-bottom: 50px;
     border-radius: 15px;
 }

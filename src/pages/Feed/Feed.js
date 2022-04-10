@@ -1,12 +1,12 @@
 import React from 'react'
 import "./Feed.css";
-import FeedInfoCard from '../../Components/FeedInfoCard/FeedInfoCard';
-import FeedProfileCard from '../../Components/FeedProfileCard/FeedProfileCard';
-import FeedSearchCard from '../../Components/FeedSeachCard/FeedSearchCard';
-import Header from '../../Components/Header/Header';
-import FeedContactCard from '../../Components/FeedContactCard/FeedContactCard';
-import FeedSuggestionCard from '../../Components/FeedSuggestionCard/FeedSuggestionCard';
-import FeedCard from '../../Components/FeedCard/FeedCard';
+import FeedInfoCard from '../../components/FeedInfoCard/FeedInfoCard';
+import FeedProfileCard from '../../components/FeedProfileCard/FeedProfileCard';
+import FeedSearchCard from '../../components/FeedSeachCard/FeedSearchCard';
+import Header from '../../components/Header/Header';
+import FeedContactCard from '../../components/FeedContactCard/FeedContactCard';
+import FeedSuggestionCard from '../../components/FeedSuggestionCard/FeedSuggestionCard';
+import FeedCard from '../../components/FeedCard/FeedCard';
 
 
 function Feed() {
@@ -20,8 +20,6 @@ function Feed() {
              <FeedContactCard />
              <FeedSuggestionCard />
              <FeedCard/>
-
-
            
         </div>
            

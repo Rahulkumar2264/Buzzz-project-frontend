@@ -1,40 +1,31 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+// import { useNavigate, withRouter } from "react-router-dom";
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
 import './login.css';
+import { setUserInfo } from '../../redux/user/user.action';
+import { withRouter } from '../../router';
 
-
-export default function Login(e) {
-    // const email = useRef();
-    // const password = useRef();
-    
-
+function Login(props) {
+    //let history= useNavigate();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-
-    // const handleclick = (e) => {
-    //     e.preventDefault();
-    //     console.log(email.current.value);
-    //     console.log(password.current.value);
-    // }
-
     async function login() {
         console.warn(email, password)
         let items = { email, password };
 
-        const result = await fetch("http://localhost:8080/api/auth/login", {
+        let result = await fetch("http://localhost:5000/api/auth/login", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify(items)
-
         });
         result = await result.json();
-
-        console.warn('result',result);
-        
-        
-
+        localStorage.setItem("user",JSON.stringify(result));
+        props.setUserInfo(result);
+        props.history.push('/feed');
     }
 
     return (
@@ -48,7 +39,7 @@ export default function Login(e) {
                     </span>
                 </div>
                 <div className="loginRight">
-                    <form className="loginBox" >
+                    <div className="loginBox" >
                         <input placeholder="Email"
                             type="email"
                             className="loginInput"
@@ -70,10 +61,28 @@ export default function Login(e) {
 
 
 
-                    </form>
+                    </div>
                 </div>
             </div>
 
         </div>
     )
 }
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+        setUserInfo
+    },
+    dispatch
+  );
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(withRouter(Login));

@@ -1,0 +1,83 @@
+.user-profile-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 30px;
+}
+    
+.profile-card {
+    position: relative;
+    bottom: -50px;
+    width: 840px;
+    height: 160px;
+    right: 270px;
+    border-radius: 10px 10px 0 0;
+}
+    
+.cover-image {
+    position: relative;
+    bottom: 20px;
+    width: 800px;
+    height: 150px;
+    border-radius: 10px 10px 0 0;
+}
+    
+.profile-image {
+    position: absolute;
+    top: 90px;
+    left: 40px;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px; 
+} 
+.profile-user{
+    padding: 50px 30px 15px;
+    }
+    .user-name{
+    font-size:30px;
+    font-weight: 700;
+    color: #49484b;
+}
+    .user-description{
+    font-size: 20px;
+    color: #49484b;
+    line-height: 35px;
+    margin-top: 5px;
+    }
+    .user-description1{
+    font-size: 16px;
+    color: gray;
+    line-height: 35px;
+    margin-top: 5px;
+    }
+    .user-button{
+    margin: 20px 0 40px;
+    
+    }
+    .user-button button:first-of-type{
+    margin-right: 15px;
+    
+    }
+    .btn{
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    transition: all .5s ease;
+    }
+    .btn-primary,
+    .btn-outline-primary{
+    border: 1px solid rgb(98, 155, 241);
+    }
+    .btn-primary,
+    .btn-outline-primary:hover{
+    color: #231e39;
+    background-color: #51a8e2;
+    }
+    .btn-primary:hover,
+    .btn-outline-primary{
+    background-color: transparent;
+    color: #101011;
+    }
+    
