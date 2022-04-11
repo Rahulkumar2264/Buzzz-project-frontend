@@ -25,7 +25,7 @@ function Login(props) {
         result = await result.json();
         localStorage.setItem("user",JSON.stringify(result));
         props.setUserInfo(result);
-        props.history.push('/feed');
+        props.history('/feed');
     }
 
     return (
