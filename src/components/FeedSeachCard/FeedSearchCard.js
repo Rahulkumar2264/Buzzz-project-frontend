@@ -1,24 +1,83 @@
-import React from 'react'
+import React, { useState } from "react";
 import "./FeedSearchCard.css";
-// import Photo_logo from "../../Images/Photo-logo.png"
+import { bindActionCreators, compose } from "redux";
+import { connect } from "react-redux";
 
+function FeedSearchCard(props) {
+  const [postText, setPostText] = useState("");
 
-function FeedSearchCard() {
-    return (
-        <div>
+  const selectMedia = () => {
+    const myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "571421782896433",
+        uploadPreset: "my_preset",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log("Done! Here is the image info: ", result.info);
+        }
+      }
+    );
+    myWidget.open();
+  };
 
-            <div className='search-wrapper'>
-                <img src='https://i.picsum.photos/id/822/200/200.jpg?hmac=pXgRn-rbZIan3GYBv9xCVsdyt_Kzq5Q_d0AbLnzeT3k'  alt="" />
-                <input className="search-field" type="text" placeholder="Start a post..." name="search" />
+  const submitPost = async (e) => {
+    const key = e.keyCode;
+    if (key === 13 && postText.length > 0) {
+      const postObj = {
+        text: postText,
+        image_url: "",
+        video_url: "",
+        comments: [],
+        createdBy: props.user?.user?.user_id,
+      };
+     
+      await fetch("http://localhost:5000/api/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(postObj),
+      });
+      setPostText('');
+    }
+  };
 
-                <span className='photo-logo'> Photo/Video</span>
-            </div>
-            {/* <div className="search">
-                <input type="text" placeholder="Start a post..." name="search" />
-                <button type="submit"><i className="fa fa-search"></i></button>
-            </div> */}
-        </div>
-    )
+  return (
+    <div>
+      <div className="search-wrapper">
+        <img
+          src="https://i.picsum.photos/id/822/200/200.jpg?hmac=pXgRn-rbZIan3GYBv9xCVsdyt_Kzq5Q_d0AbLnzeT3k"
+          alt=""
+        />
+        <input
+          className="search-field"
+          type="text"
+          placeholder="Start a post..."
+          name="search"
+          onKeyDown={submitPost}
+          onChange={(event) => setPostText(event.target.value)}
+          value={postText}
+        />
+
+        <span className="photo-logo" onClick={selectMedia}>
+          {" "}
+          Photo/Video
+        </span>
+      </div>
+    </div>
+  );
 }
 
-export default FeedSearchCard;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({}, dispatch);
+};
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  FeedSearchCard
+);

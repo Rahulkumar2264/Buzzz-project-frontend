@@ -24,7 +24,7 @@ export default function Register() {
         result = await result.json();
         console.log(result);
     }
-    const checkValidation =(e) => {
+    const checkValidation = (e) => {
         setconfirmPassword(e.target.value);
         if (confirmPassword !== password) {
             setisError("confirm password should be match with password");
@@ -54,8 +54,8 @@ export default function Register() {
                     <div className="registerBox">
                         <input placeholder="Username" className="registerInput" onChange={(e) => setusername(e.target.value)} />
                         <input placeholder="Email" className="registerInput" onChange={(e) => setEmail(e.target.value)} />
-                        <input placeholder="Password" className="registerInput" onChange={(e) => setPassword(e.target.value)} />
-                        <input placeholder="Confirm Password" name="confirmPassword" className="registerInput" onChange={(e) => checkValidation(e)} />
+                        <input placeholder="Password" className="registerInput" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} className="registerInput" onChange={(e) => checkValidation(e)} />
                         <button onClick={Signup} className="registerButton" >Sign Up</button>
 
                         <button className="loginRegisterButton">Log into Account</button>
