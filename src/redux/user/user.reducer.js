@@ -3,7 +3,7 @@ let user = localStorage.getItem("user");
 user = (user && JSON.parse(user)) || {};
 console.log(user)
 const initialState = {
-  user
+     user
 };
 
 export default (state = initialState, action) => {
