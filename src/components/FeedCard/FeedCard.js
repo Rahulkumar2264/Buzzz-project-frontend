@@ -23,10 +23,14 @@ function FeedCard() {
 
   return (
     <div className="post-wrapper">
-      <div>
+      <div className="sort">
         <span>
-          
+          <h5>Sort By:</h5>
         </span>
+        <select name='Sort' id='Sort' required>
+                <option value={'Top'}>Top</option>
+                <option value={'Down'}>Down</option>
+        </select>
       </div>
       {postData &&
         postData.map((item) => {

@@ -18,11 +18,14 @@ function FeedProfileCard(props) {
         <p className="profileviews-wrapper">
           <div className="profileviews">
             <span>234</span>
-            <span>Profile Views</span>
+            <span>Profile View </span>
+            <a href="/selfProfile">Edit Profile</a>
           </div>
           <div className="postviews">
             <span>10</span>
             <span>Post</span>
+            <a href="/profile">Add Friend </a>
+
           </div>
         </p>
       </div>

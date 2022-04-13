@@ -113,7 +113,6 @@
     padding: 12px 16px;
     }
     .input .details{
-    background-color: #51a8e2;
     
     }
     .input input{
@@ -123,18 +122,6 @@
     width: 75px;
     
     }
-    /* .user-description{
-    font-size: 20px;
-    color: #49484b;
-    line-height: 35px;
-    margin-top: 5px;
-    }
-    .user-description1{
-    font-size: 16px;
-    color: gray;
-    line-height: 35px;
-    margin-top: 5px;
-    } */
     .input-button{
     margin: 20px 0 40px;
     margin-left: 40px;

@@ -8,6 +8,19 @@
     border-radius: 15px;
     box-sizing: border-box;
 }
+.post-wrapper h5{
+    font-size: 15px;
+}
+.post-wrapper .sort{
+    display: flex;
+    margin-bottom: 10px;
+}
+.post-wrapper select{
+    border: none;
+    font-size: 15px;
+    
+
+}
 .post-wrapper .card-post {
     position: relative;
     width: 100%;
