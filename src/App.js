@@ -6,9 +6,9 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Feed from "./pages/Feed/Feed";
 import Profile from "./pages/Profile/Profile";
+import SelfProfile from "./pages/SelfProfile/SelfProfile";
 
 function App(props) {
-  console.log(props);
   return (
     <Router>
         <Routes>
@@ -21,6 +21,8 @@ function App(props) {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/feed" element={<Feed />} />
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/selfprofile" element={<SelfProfile />} />
+
 
         </Routes>
     </Router>

@@ -1,16 +1,18 @@
 let user = localStorage.getItem("user");
 
 user = (user && JSON.parse(user)) || {};
-console.log(user)
 const initialState = {
-     user
+  ...user
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   const type = action && action.type;
   switch (type) {
     case "SET_USER_INFO":
-      return { ...action.user };
+      return { ...action.data };
+    case "SET_PROFILE_INFO":
+      return { ...state.user,...action.data };
     default:
       return state;
   }

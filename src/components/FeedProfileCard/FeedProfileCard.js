@@ -1,21 +1,20 @@
 import React from "react";
+import { bindActionCreators, compose } from "redux";
+import { connect } from "react-redux";
 import "./FeedProfileCard.css";
-import profile_placeholder from "../../images/profile-placeholder.png";
+import profile_image from "./profile.jpeg";
 
-function FeedProfileCard() {
+function FeedProfileCard(props) {
   return (
     <div className="card">
-     <img className="cover-img"
-        src="https://i.picsum.photos/id/822/200/200.jpg?hmac=pXgRn-rbZIan3GYBv9xCVsdyt_Kzq5Q_d0AbLnzeT3k"
-        alt=""
-      />
+     <div className="cover-img" />
       <img className="profile-img"
-        src="https://i.picsum.photos/id/822/200/200.jpg?hmac=pXgRn-rbZIan3GYBv9xCVsdyt_Kzq5Q_d0AbLnzeT3k"
+        src={props.user.profile_image||profile_image}
         alt=""
       />
       <div className="card-body">
-        <h4 className="card-title">Shekhar Agarwal</h4>
-        <p className="card-text">Newly Recruit at TTN</p>
+        <h4 className="card-title">{props.user.username}</h4>
+        <p className="card-text">{props.user.profile_title}</p>
         <p className="profileviews-wrapper">
           <div className="profileviews">
             <span>234</span>
@@ -31,4 +30,14 @@ function FeedProfileCard() {
   );
 }
 
-export default FeedProfileCard;
+const mapStateToProps = (state) => ({
+  user:state.user
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({}, dispatch);
+};
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  FeedProfileCard
+);

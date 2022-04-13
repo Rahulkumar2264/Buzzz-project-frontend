@@ -4,3 +4,10 @@ export function setUserInfo(data) {
     data
   };
 }
+
+export function setProfileInfo(data) {
+  return {
+    type: 'SET_PROFILE_INFO',
+    data
+  };
+}
