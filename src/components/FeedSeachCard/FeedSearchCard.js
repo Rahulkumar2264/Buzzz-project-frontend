@@ -3,6 +3,7 @@ import "./FeedSearchCard.css";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 import placeholder from "./profile.jpeg";
+import {setPost} from "../../redux/post/post.action"
 
 function FeedSearchCard(props) {
   const [postText, setPostText] = useState("");
@@ -11,8 +12,8 @@ function FeedSearchCard(props) {
   const selectMedia = () => {
     const myWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "dap7tootv",
-        uploadPreset: "Nitish",
+        cloudName: "dvmtboeyl",
+        uploadPreset: "my-uploads",
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
@@ -56,8 +57,9 @@ function FeedSearchCard(props) {
         Accept: "application/json",
       },
     });
-    const posts = result.json();
-    
+    const posts = await result.json();
+    console.log(posts);
+    props.setPost(posts);
   };
 
   return (
@@ -85,10 +87,11 @@ function FeedSearchCard(props) {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  post: state.post
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({setPost}, dispatch);
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(
