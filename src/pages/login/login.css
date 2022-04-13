@@ -60,6 +60,17 @@
         font-weight: 800;
 
     }
+    .loginButton:hover{
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        background-color :#1c65c5;
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 800;
+
+    }
     .loginForgot{
         text-align: center;
         color:#1775ee;
@@ -78,3 +89,20 @@
         font-size: 20px;
         font-weight: 800;
  }
+ a{
+    text-align: center;
+ }
+ .loginRegisterButton:hover{
+    height: 50px;
+    width: 50%;
+    align-self: center;
+    border-radius: 10px;
+    border: none;
+    background-color :#218f0b;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 800;
+ }
+  
+ 

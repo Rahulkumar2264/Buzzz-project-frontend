@@ -2,14 +2,19 @@ import './register.css';
 import { useState } from 'react';
 
 
+
+
 export default function Register() {
-    const [isError, setisError] = useState();
-    const [username, setusername] = useState();
+    const [isError, setIsError] = useState();
+    const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [confirmPassword, setconfirmPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
 
-    const Signup = async () => {
+    const Signup = async (props) => {
+        if (isError) {
+            return
+        }
         let item = { username, email, password, }
 
         let result = await fetch("http://localhost:5000/api/auth/register", {
@@ -23,20 +28,36 @@ export default function Register() {
         });
         result = await result.json();
         console.log(result);
+
     }
     const checkValidation = (e) => {
-        setconfirmPassword(e.target.value);
-        if (confirmPassword !== password) {
-            setisError("confirm password should be match with password");
+        setConfirmPassword(e.target.value);
+
+        if (e.target.value !== password) {
+
+            setIsError("confirm password should be match with password");
         } else {
-            setisError("");
-
+            setIsError("");
         }
-
+    };
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
     };
 
-
-
+    const validateAndSetEmail = (event) => {
+        const email = event.target.value;
+        setEmail(email);
+        console.log("validateEmail(email)", validateEmail(email));
+        if (!validateEmail(email)) {
+            setIsError("Invalid Email")
+        } else {
+            setIsError("");
+        }
+    }
     return (
         <div className='Register'>
             <div className="registWrapper">
@@ -52,13 +73,13 @@ export default function Register() {
                 </div>
                 <div className="registerRight">
                     <div className="registerBox">
-                        <input placeholder="Username" className="registerInput" onChange={(e) => setusername(e.target.value)} />
-                        <input placeholder="Email" className="registerInput" onChange={(e) => setEmail(e.target.value)} />
-                        <input placeholder="Password" className="registerInput" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <input placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} className="registerInput" onChange={(e) => checkValidation(e)} />
+                        <input type='username' placeholder="Username" className="registerInput" onChange={(e) => setUsername(e.target.value)} />
+                        <input type='email' placeholder="Email" className="registerInput" onChange={(e) => validateAndSetEmail(e)} />
+                        <input type="password" placeholder="Password" className="registerInput" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required className="registerInput" onChange={(e) => checkValidation(e)} />
                         <button onClick={Signup} className="registerButton" >Sign Up</button>
 
-                        <button className="loginRegisterButton">Log into Account</button>
+                        <a href='/login'><button className="loginRegisterButton">Log into Account</button></a>
 
 
 
