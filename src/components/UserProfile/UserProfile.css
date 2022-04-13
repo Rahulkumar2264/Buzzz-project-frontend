@@ -1,7 +1,7 @@
 .user-profile-wrapper {
     background-color: #fff;
     width: 60%;
-    height: 400px;
+    height: 450px;
     position: absolute;
     left: 10%;
     top: 150px;
@@ -44,27 +44,27 @@
     font-weight: 700;
     color: #49484b;
 }
-.user-description{
+    .user-description{
     font-size: 20px;
     color: #49484b;
     line-height: 35px;
     margin-top: 5px;
- }
-.user-description1{
+    }
+    .user-description1{
     font-size: 16px;
     color: gray;
     line-height: 35px;
     margin-top: 5px;
-}
-.user-button{
+    }
+    .user-button{
     margin: 20px 0 40px;
     
-}
-.user-button button:first-of-type{
+    }
+    .user-button button:first-of-type{
     margin-right: 15px;
     
-}
-.btn{
+    }
+    .btn{
     display: inline-block;
     padding: 15px 30px;
     border-radius: 3px;
@@ -72,19 +72,19 @@
     font-size: 15px;
     text-align: center;
     transition: all .5s ease;
-}
-.btn-primary,
-.btn-outline-primary{
+    }
+    .btn-primary,
+    .btn-outline-primary{
     border: 1px solid rgb(98, 155, 241);
-}
-.btn-primary,
-.btn-outline-primary:hover{
+    }
+    .btn-primary,
+    .btn-outline-primary:hover{
     color: #231e39;
     background-color: #51a8e2;
-}
-.btn-primary:hover,
-.btn-outline-primary{
+    }
+    .btn-primary:hover,
+    .btn-outline-primary{
     background-color: transparent;
     color: #101011;
-}
+    }
     

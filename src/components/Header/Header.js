@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { bindActionCreators, compose } from "redux";
+import { connect } from "react-redux";
 import "./Header.css";
+import placeholder from './profile.jpeg';
+import {setProfileInfo} from '../../redux/user/user.action';
 
-function Header() {
+function Header(props) {
+  useEffect(()=>{
+    getUserProfile();
+  },[]);
+
+  
+  async function getUserProfile(){
+    const {user_id} = props.user;
+    const response = await fetch(`http://localhost:5000/api/profile/${user_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    });
+    const profile = await response.json();
+    props.setProfileInfo(profile.data);
+  }
+
   return (
     <div className="nav-header">
       <img
@@ -12,10 +34,10 @@ function Header() {
       <ul className="menu-list">
         <li className="user-profile">
           <img
-            src="https://i.picsum.photos/id/822/200/200.jpg?hmac=pXgRn-rbZIan3GYBv9xCVsdyt_Kzq5Q_d0AbLnzeT3k"
+            src={props.user?.profile_image || placeholder}
             alt=""
           />
-          <span>Shekhar Agarwal</span>
+          <span>{props.user?.username}</span>
         </li>
         <li className="message">
           <svg
@@ -48,4 +70,14 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({setProfileInfo}, dispatch);
+};
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  Header
+);

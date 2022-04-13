@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import "./FeedSearchCard.css";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
+import placeholder from "./profile.jpeg";
 
 function FeedSearchCard(props) {
   const [postText, setPostText] = useState("");
-
+  const [imageUrl, setImageUrl] = useState("");
+  
   const selectMedia = () => {
     const myWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "571421782896433",
-        uploadPreset: "my_preset",
+        cloudName: "dap7tootv",
+        uploadPreset: "Nitish",
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Done! Here is the image info: ", result.info);
+          //console.log("Done! Here is the image info: ", result.info);
+          setImageUrl(result.info.url);
         }
       }
     );
@@ -26,12 +29,13 @@ function FeedSearchCard(props) {
     if (key === 13 && postText.length > 0) {
       const postObj = {
         text: postText,
-        image_url: "",
+        image_url: imageUrl,
         video_url: "",
         comments: [],
-        createdBy: props.user?.user?.user_id,
+        createdBy: props.user?.user_id,
       };
-     
+      setPostText("");
+      setImageUrl("");
       await fetch("http://localhost:5000/api/post", {
         method: "POST",
         headers: {
@@ -40,17 +44,26 @@ function FeedSearchCard(props) {
         },
         body: JSON.stringify(postObj),
       });
-      setPostText('');
+      fetchPostData();
     }
+  };
+
+  const fetchPostData = async () => {
+    let result = await fetch("http://localhost:5000/api/post", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const posts = result.json();
+    
   };
 
   return (
     <div>
       <div className="search-wrapper">
-        <img
-          src="https://i.picsum.photos/id/822/200/200.jpg?hmac=pXgRn-rbZIan3GYBv9xCVsdyt_Kzq5Q_d0AbLnzeT3k"
-          alt=""
-        />
+        <img src={props?.user?.profile_image || placeholder} alt="" />
         <input
           className="search-field"
           type="text"

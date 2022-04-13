@@ -4,7 +4,7 @@ import "./FeedSuggestionCard.css";
 
 function FeedSuggestionCard() {
     return (
-        <div>
+        <>
             <div className='suggestion-wrapper'>
             <h3>Suggestion</h3>
             <ul className='suggestion-list'>
@@ -35,7 +35,7 @@ function FeedSuggestionCard() {
                 
             </ul>
             </div>
-        </div>
+        </>
     )
 }
 
