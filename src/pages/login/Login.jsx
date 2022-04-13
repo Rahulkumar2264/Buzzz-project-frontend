@@ -62,9 +62,9 @@ function Login(props) {
               Log In
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
+           <a href="/register"> <button className="loginRegisterButton">
               Create a New Account
-            </button>
+            </button></a>
           </div>
         </div>
       </div>
