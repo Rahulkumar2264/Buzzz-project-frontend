@@ -3,15 +3,16 @@ import { useState } from 'react';
 
 
 export default function Register() {
+    const [isError, setisError] = useState();
+    const [username, setusername] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [confirmPassword, setconfirmPassword] = useState();
 
-    const [username,setusername]=useState();
-    const [email,setEmail]=useState();
-    const [password,setPassword]=useState();
+    const Signup = async () => {
+        let item = { username, email, password, }
 
-     const Signup= async ()=>{
-         let item ={username,email,password}
-
-         let result = await fetch("http://localhost:8080/api/auth/register", {
+        let result = await fetch("http://localhost:5000/api/auth/register", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -22,7 +23,17 @@ export default function Register() {
         });
         result = await result.json();
         console.log(result);
-     }
+    }
+    const checkValidation = (e) => {
+        setconfirmPassword(e.target.value);
+        if (confirmPassword !== password) {
+            setisError("confirm password should be match with password");
+        } else {
+            setisError("");
+
+        }
+
+    };
 
 
 
@@ -36,12 +47,15 @@ export default function Register() {
                         <br />around you on Buzzz
                     </span>
                 </div>
+                <div style={{ position: 'absolute', top: 20, marginLeft: 330 }}>
+                    {isError}
+                </div>
                 <div className="registerRight">
                     <div className="registerBox">
-                        <input placeholder="Username" className="registerInput" onChange={(e)=>setusername(e.target.value)} />
-                        <input placeholder="Email" className="registerInput"onChange={(e)=>setEmail(e.target.value)} />
-                        <input placeholder="Password" className="registerInput" onChange={(e)=>setPassword(e.target.value)}/>
-                        <input placeholder="Password Again" className="registerInput" />
+                        <input placeholder="Username" className="registerInput" onChange={(e) => setusername(e.target.value)} />
+                        <input placeholder="Email" className="registerInput" onChange={(e) => setEmail(e.target.value)} />
+                        <input placeholder="Password" className="registerInput" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} className="registerInput" onChange={(e) => checkValidation(e)} />
                         <button onClick={Signup} className="registerButton" >Sign Up</button>
 
                         <button className="loginRegisterButton">Log into Account</button>
