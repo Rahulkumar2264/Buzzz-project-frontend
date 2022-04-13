@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { useNavigate, withRouter } from "react-router-dom";
+ //import { useNavigate, withRouter } from "react-router-dom";
 import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import './login.css';
@@ -23,9 +23,13 @@ function Login(props) {
             body: JSON.stringify(items)
         });
         result = await result.json();
-        localStorage.setItem("user",JSON.stringify(result));
+        if(result !=="wrong password" && result !== "user not found"){
+        localStorage.setItem("user", JSON.stringify(result));
         props.setUserInfo(result);
+        console.log(result);
+
         props.history('/feed');
+        }
     }
 
     return (
@@ -57,7 +61,7 @@ function Login(props) {
                         />
                         <button className="loginButton" onClick={login}>Log In</button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton">Create a New Account</button>
+                       <a href='/register' ><button className="loginRegisterButton">Create a New Account</button></a>
 
 
 
@@ -72,17 +76,17 @@ function Login(props) {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-        setUserInfo
-    },
-    dispatch
-  );
+    return bindActionCreators(
+        {
+            setUserInfo
+        },
+        dispatch
+    );
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )
 )(withRouter(Login));
