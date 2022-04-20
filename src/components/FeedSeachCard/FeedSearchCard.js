@@ -3,7 +3,7 @@ import "./FeedSearchCard.css";
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
 import placeholder from "./profile.jpeg";
-import {setPost} from "../../redux/post/post.action"
+import {createPost} from "../../redux/post/post.action"
 
 function FeedSearchCard(props) {
   const [postText, setPostText] = useState("");
@@ -17,7 +17,6 @@ function FeedSearchCard(props) {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          //console.log("Done! Here is the image info: ", result.info);
           setImageUrl(result.info.url);
         }
       }
@@ -35,31 +34,11 @@ function FeedSearchCard(props) {
         comments: [],
         createdBy: props.user?.user_id,
       };
+      props.createPost(postObj);
+
       setPostText("");
       setImageUrl("");
-      await fetch("http://localhost:5000/api/post", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(postObj),
-      });
-      fetchPostData();
     }
-  };
-
-  const fetchPostData = async () => {
-    let result = await fetch("http://localhost:5000/api/post", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const posts = await result.json();
-    console.log(posts);
-    props.setPost(posts);
   };
 
   return (
@@ -91,7 +70,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({setPost}, dispatch);
+  return bindActionCreators({
+    createPost
+  }, dispatch);
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(

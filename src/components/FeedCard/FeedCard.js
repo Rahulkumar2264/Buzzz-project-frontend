@@ -1,40 +1,17 @@
-import React, { useEffect } from "react";
+import React ,{useEffect} from "react";
 import "./FeedCard.css";
 import placeholder from './profile.jpeg';
 import { bindActionCreators, compose } from "redux";
 import { connect } from "react-redux";
-import {setPost} from "../../redux/post/post.action"
+import {fetchPost} from "../../redux/post/post.action"
 
 function FeedCard(props) {
-  
-  useEffect(() => {
-    fetchPostData();
-  }, []);
+  useEffect(()=>{
+    props.fetchPost();
 
-  const fetchPostData = async () => {
-    let result = await fetch("http://localhost:5000/api/post", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const post = await result.json();
-    props.setPost(post);
-  };
-
+  },[])
   return (
     <div className="post-wrapper">
-      <div className="sort"> 
-        <span>
-          <h5>Sort By:</h5>
-        </span>
-        <select name="Sort" id="Sort" required>
-            <option value={'Top'}>Top</option>
-            <option value={'Top'}>Top</option>
-
-        </select>
-      </div>
       {props?.post?.post &&
         props?.post?.post.map((item) => {
           return (
@@ -80,7 +57,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({setPost}, dispatch);
+  return bindActionCreators({fetchPost}, dispatch);
 };
 
 export default compose(connect(mapStateToProps, mapDispatchToProps))(
